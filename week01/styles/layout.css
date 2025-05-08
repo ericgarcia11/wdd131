@@ -13,10 +13,13 @@ header {
 }
 
 h1{
-    size: 20px;
     padding: 1rem;
 }
   
+a{
+    all:unset;
+}
+
 nav {
     background: rgb(0, 0, 0);
     color: white;
