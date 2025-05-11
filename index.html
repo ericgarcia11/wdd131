@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WDD 131 - Dynamic Web Fundamentals - Eric Garcia</title>
-    <meta description="WDD 131 - Dynamic Web Fundamentals - Eric Garcia - Home Page.">
-    <meta author="Eric Garcia">
+    <meta name="description" content="WDD 131 - Dynamic Web Fundamentals - Eric Garcia - Home Page.">
+    <meta name="author" content="Eric Garcia">
     <link rel="stylesheet" href="styles/base.css">
     <script src="scripts/getdates.js" defer></script>
+    <!-- Conexão antecipada para melhor performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonte Ubuntu -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
 </head>
 <body>
     <header>
@@ -23,14 +30,15 @@
     <main>
         <section class="card">
             <div class="card_title">
-                <h3>
+                <h2>
                     About Me 
-                </h3>
+                </h2>
             </div>
             <div class="card_content">
                 <div class="my_img">
-                    <!-- <img src="https://picsum.photos/200" alt=""> -->
-                    <img src="images/eric_garcia_airport.jpg" alt="eric garcia airport" width="150">
+                    <a href="https://www.instagram.com/eric_r_garcia/" target="_blank">
+                        <img src="images/eric_garcia_airport.jpg" alt="eric garcia airport" width="150">
+                    </a>
                 </div>
                 <div class="card1_main_content">
                     <p>Hi, my name is Eric — Eric Garcia. I was born here in Brazil, and I live in Canela, RS, 
@@ -40,7 +48,9 @@
                         My wife is my world. We love traveling, playing games, and hanging out with our friends. I 
                         enjoy spending time playing chess and doing anything with her — and I also love playing the guitar.
                     </p>
-                    <h3>Canela-RS, Brazil</h3>
+                    <a href="https://g.co/kgs/42DpKNB" target="_blank">
+                        <h2>Canela-RS, Brazil</h2>
+                    </a>
                     <hr>
                     <div class="country_info">
                         <figure>
@@ -60,13 +70,14 @@
         </section>
         <section class="card">
             <div class="card_title">
-                <h3>Check my Most Recent Project</h3>
+                <h2>Check my Most Recent Project</h2>
             </div>
             <div class="card_2_content">
-                <img src="images/eric_last_project.png" alt="ilustrative image of customers service." width="250">
+                <h3>Do you want an AI assisting your customers 24/7?</h3>
+                <img src="images/eric_last_project.png" alt="ilustrative image of customers service." width="200">
                 <a href="https://www.impulsaoimobiliaria.com.br/automacao-de-whatsapp-para-imobiliarias" target="_blank">
                     <button class="button">
-                        <span>Check</span>
+                        <span>Start Today</span>
                     </button>
                 </a>   
             </div>
