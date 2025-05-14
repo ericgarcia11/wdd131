@@ -1,0 +1,121 @@
+:root {
+    --primary-color: #14213D;
+    --sec-color: #E5E5E5;
+    --background-color: white;
+    --white-theme-text-color: #14213D;
+    --dark-theme-text-color: white;
+    --third-color: #FCA311;
+    --primary-color_transparent:#14213d82;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    background-color: var(--primary-color);
+    color: var(--dark-theme-text-color);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1{
+    margin-left: 2rem;
+}
+
+nav {
+    display: flex;
+    margin-right: 2rem;
+}
+
+nav ul{
+    list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+nav a {
+	display: block;
+	color: var(--dark-theme-text-color);
+	text-align: center;
+	padding: 1rem;
+	text-decoration: none;
+	font-size: larger;
+}
+
+nav a:hover {
+	transform: scale(1.1);
+    transition: 0.5s;
+    border-radius: 8%;
+	background-color: #e5e5e577;
+	color: var(--white-theme-text-color);
+}
+
+.active {
+	color: var(--third-color);
+}
+
+main h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+@media (max-width: 400px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 1rem;
+    padding: 1rem;
+}
+  
+  /* Quando a tela for maior, mude para mais colunas */
+@media screen and (min-width: 600px) {
+    main {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+  
+@media screen and (min-width: 900px) {
+    main {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+figure {
+    overflow: hidden;
+    text-align: center;
+}
+  
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+  
+figcaption {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--dark-theme-text-color);
+    text-align: center;
+    padding: 1rem;
+}
