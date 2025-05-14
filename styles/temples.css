@@ -90,7 +90,7 @@ nav a:hover {
 	color: var(--white-theme-text-color);
 }
 
-main h1 {
+main h2 {
     grid-column: 1 / -1;
     text-align: center;
   }
