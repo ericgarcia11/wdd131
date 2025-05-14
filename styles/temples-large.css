@@ -13,3 +13,15 @@
 		flex: 1 1 100%;
 	}
 }
+
+@media screen and (min-width: 600px) {
+    main {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+  
+@media screen and (min-width: 900px) {
+    main {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}

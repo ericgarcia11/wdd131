@@ -8,28 +8,39 @@
     --primary-color_transparent:#14213d82;
 }
 
+/* * {
+    outline: 1px solid red;
+  } */
+
 body{
     margin: 0;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 header{
     background-color: var(--primary-color);
     color: var(--dark-theme-text-color);
-    padding: 1rem;
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    box-sizing: border-box;
 }
 
 header h1{
-    margin-left: 2rem;
+    margin-left: 0;
+}
+
+header h1 a{
+    text-decoration: none;
+    color: var(--dark-theme-text-color);
 }
 
 nav {
     display: flex;
-    margin-right: 2rem;
+    margin-right: 0;
 }
 
 nav ul{
@@ -39,6 +50,9 @@ nav ul{
 }
 
 nav a {
+    transform: scale(1); /* estado normal */
+	transition: transform 1s, background-color 1s, color 1s;
+    border-radius: 8%;
 	display: block;
 	color: var(--dark-theme-text-color);
 	text-align: center;
@@ -59,50 +73,70 @@ nav a:hover {
 	color: var(--third-color);
 }
 
+.active:hover {
+	transform: scale(1.1);
+    transition: 0.5s;
+    border-radius: 8%;
+	background-color: var(--third-color);
+	color: var(--white-theme-text-color);
+}
+
 main h1 {
     grid-column: 1 / -1;
     text-align: center;
   }
 
-@media (max-width: 400px) {
-    main {
-      grid-template-columns: 1fr;
-    }
-}
 
 main {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
     gap: 1rem;
     padding: 1rem;
 }
-  
-  /* Quando a tela for maior, mude para mais colunas */
-@media screen and (min-width: 600px) {
-    main {
-      grid-template-columns: 1fr 1fr;
-    }
-}
-  
-@media screen and (min-width: 900px) {
-    main {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-}
 
-figure {
+.image-hover {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
     overflow: hidden;
     text-align: center;
 }
   
-figure img {
-    max-width: 100%;
-    height: auto;
+.image-hover .img-blur {
     display: block;
-    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    transition: all 1s ease;
     border-radius: 4px;
+    filter: none;
+    transform: scale(1);
+    z-index: 1;
+}
+  
+.image-hover .img-clear {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: all 1s ease;
+    opacity: 0;
+    transform: scale(1);
+    z-index: 2;
+    border-radius: 4px;
+}
+  
+.image-hover:hover .img-blur {
+    filter: blur(5px);
+    transform: scale(1.1);
+}
+  
+.image-hover:hover .img-clear {
+    opacity: 1;
+    transform: scale(1.1);
 }
   
 figcaption {
@@ -111,11 +145,17 @@ figcaption {
     color: var(--primary-color);
 }
 
+.image-hover:hover figcaption {
+    font-weight: bold;
+    color: var(--primary-color);
+}  
+
 footer {
     bottom: 0;
     width: 100%;
     background-color: var(--primary-color);
     color: var(--dark-theme-text-color);
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
 }
