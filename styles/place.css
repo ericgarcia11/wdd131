@@ -19,19 +19,23 @@ body {
 
 header {
     display: flex;
+    position: relative;
     justify-content: center;
     background-color: var(--primary-color);
     color: var(--dark-theme-text-color);
     height: 12vh;
 }
 
-#small_line{
+header::after{
+    position: absolute;
+    bottom: 0;
+    content: "";
     padding-bottom: 0.8rem;
     width: 100%;
     background-color: var(--third-color)
 }
 
-@media (max-width: 740px) {
+@media (max-width: 739px) {
     main {
         display: flex;
         flex-direction: column;
@@ -65,7 +69,7 @@ header {
         max-width: 80px;
     }
 
-    label{
+    strong{
         font-weight: bold;
     }
 }
@@ -126,7 +130,7 @@ header {
         max-width: 80px;
     }
 
-    label{
+    strong{
         font-weight: bold;
     }
 }
