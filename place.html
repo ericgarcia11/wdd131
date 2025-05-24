@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Assignment</title>
+    <meta name="Author" content="Eric Garcia">
+    <link rel="stylesheet" href="styles/place.css">
+    <script src="scripts/place.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Canela - RS</h1>
+    </header>
+    <main>  
+            <div id="small_line"></div>
+            <picture>
+                <source srcset="images/place_big.webp" media="(min-width: 740px)">
+                <img src="images/place_small.webp" alt="canela_RS">
+            </picture>
+           <section id="data">
+                <h2>Data</h2>
+                <div>
+                    <label for="area">Area:</label>
+                    <span>254.6 km²</span>
+                </div>
+                <div>
+                    <label for="population">Population:</label>
+                    <span>44.489</span>
+                </div>
+                <div>
+                    <label for="language">Language:</label>
+                    <span>Portuguese</span>
+                </div>
+                <div>
+                    <label for="currency">Currency:</label>
+                    <span>Real BRL</span>
+                </div>
+                <div>
+                    <label for="timezone">Time Zone:</label>
+                    <span>UTC+3</span>
+                </div>
+                <div>
+                    <label for="callingcode">Calling Code:</label>
+                    <span>+55 54</span>
+                </div>
+                </section>
+            <section id="weather">
+                <h2>Weather</h2>
+                <img src="images/cloudy.svg" alt="weather_icons" width="300">
+                <div>
+                    <label for="temperature">Temperature:</label>
+                    <span id="temperature">9°C</span>
+                </div>
+                <div>
+                    <label for="conditions">Conditions:</label>
+                    <span>Cloudy</span>
+                </div>
+                <div>
+                    <label for="wind">Wind:</label>
+                    <span  id="windspeed">5km/h</span>
+                </div>
+                <div>
+                    <label for="windchill">Wind Chill:</label>
+                    <span id="windchill"></span>
+                </div>
+            </section>
+    </main>
+    <footer>
+        <p> © <span >  </span> - Eric Garcia - Brazil, RS </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+</html>
