@@ -127,7 +127,7 @@ header::after{
     }
 
     section img{
-        max-width: 80px;
+        display: none;
     }
 
     strong{
