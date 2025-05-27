@@ -1,0 +1,82 @@
+/* global variables for colors. */
+
+:root {
+    --primary-color: #344e41;
+    --sec-color: #588157;
+    --background-color: white;
+    --white-color: #0D1321;
+    --dark-color: white;
+    --main-font: 'Ubuntu', sans-serif;
+}
+
+body {
+    font-family: var(--main-font);
+    display: grid;
+    height: 100vh;
+    grid-template: auto 1fr auto / 100%;
+    margin: 0;
+}
+
+body a {
+    text-decoration: none;
+    all: unset;
+    cursor: pointer;
+}
+
+header {
+    background:var( --primary-color);
+    color: var( --dark-color);
+    grid-column: 1 / 4;
+}
+
+h1{
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 span{
+    color: rgb(196, 196, 196);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main img{
+    width: 400px;
+    height: 600px;
+    object-fit: cover;
+    margin: 2rem;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.visible {
+    opacity: 1;
+}
+
+@keyframes fadeFromBlack {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    background: var(--primary-color);
+    color: var(--dark-color);
+    padding: 2rem;
+    text-align: center;
+    grid-column: 1 / 4;
+}
+
+#lastModified{
+    color: rgb(196, 196, 196);
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LazyLoad - Eric Garcia</title>
+    <meta name="description" content="Lazy Load Page.">
+    <meta name="author" content="Eric Garcia">
+    <link rel="stylesheet" href="styles/lazyload.css">
+    <script src="scripts/lazyload.js" defer></script>
+    <!-- Conexão antecipada para melhor performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>WDD 131 - Dynamic Web Fundamentals - <span>Eric Garcia</span></h1>
+    </header>
+
+    <main>
+        <img class="fade-in" src="../images/brazil_oficial_flag.png" alt="brazil temple" loading="lazy">
+        <img class="fade-in" src="../images/easter-egg.jpg" alt="my sealing" loading="lazy">
+        <img class="fade-in" src="../images/temple_porto_alegre_br.png" alt="poa temple" loading="lazy">
+        <img class="fade-in" src="../images/temple_porto_alegre_small.png" alt="poa temple" loading="lazy">
+        <img class="fade-in" src="../images/temple_porto_alegre_old.png" alt="poa temple" loading="lazy">
+        <img class="fade-in" src="../images/temple_porto_alegre_large.png" alt="poa temple" loading="lazy">
+    </main>
+
+    <footer>
+        <p> © <span > <!-- Year provided in js --> </span> - Eric Garcia - Brazil, RS </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+</html>
