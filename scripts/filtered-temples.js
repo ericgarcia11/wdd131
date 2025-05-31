@@ -15,6 +15,46 @@ const hamburgerButton = document.getElementById('hamburgerButton');
 const main = document.querySelector('main');
 
 const temples = [
+    {
+    templeName: "St. George Utah",
+    location: "St. George, Utah",
+    dedicated: "1877, April, 8",
+    area: 143969,
+    imageUrl:
+    "https://churchofjesuschristtemples.org/assets/img/temples/st.-george-utah-temple/st.-george-utah-temple-40435-main.jpg"
+  },
+  {
+    templeName: "Logan Utah",
+    location: "Logan, Utah",
+    dedicated: "1884, May, 19",
+    area: 119619,
+    imageUrl:
+    "https://churchofjesuschristtemples.org/assets/img/temples/logan-utah-temple/logan-utah-temple-40550-main.jpg"
+  },
+  {
+    templeName: "Salt Lake",
+    location: "Salt Lake City, Utah",
+    dedicated: "1893, April, 24",
+    area: 382207,
+    imageUrl:
+    "https://churchofjesuschristtemples.org/assets/img/temples/salt-lake-temple/salt-lake-temple-15669-main.jpg"
+  },
+  {
+    templeName: "Colonia Juárez Chihuahua Mexico",
+    location: "Colonia Juárez Chihuahua, Mexico",
+    dedicated: "1999, March, 7",
+    area: 6800,
+    imageUrl:
+    "https://churchofjesuschristtemples.org/assets/img/temples/colonia-juarez-chihuahua-mexico-temple/colonia-juarez-chihuahua-mexico-temple-1601-main.jpg"
+  },
+  {
+    templeName: "Wichita Kansas",
+    location: "Wichita, Kansas",
+    dedicated: "N/A",
+    area: 9950,
+    imageUrl:
+    "https://churchofjesuschristtemples.org/assets/img/temples/wichita-kansas-temple/wichita-kansas-temple-50775-main.jpg"
+  },
   {
     templeName: "Aba Nigeria",
     location: "Aba, Nigeria",
@@ -160,28 +200,28 @@ function renderTemples(currentPage){
 
         const year = parseInt(temple.dedicated.split(",")[0]);
         const area = temple.area;
-        console.log(`currentPage: ${currentPage}`);
-        console.log(`year: ${year}`);
-        console.log(`area: ${area}`);
+        // console.log(`currentPage: ${currentPage}`);
+        // console.log(`year: ${year}`);
+        // console.log(`area: ${area}`);
 
         if (currentPage == "home") {
-            console.log(`e`);
+            // console.log(`e`);
             createFigureTemple(temple);
         }
         if (currentPage == "old" && year < 1900){
-            console.log(`a`);
+            // console.log(`a`);
             createFigureTemple(temple);
         }
-        if (currentPage == "new" && year > 2000){
-            console.log(`b`);
+        if (currentPage == "new" && (year > 2000 || temple.dedicated == "N/A")){
+            // console.log(`b`);
             createFigureTemple(temple);
         }
         if (currentPage == "large" && area > 90000 ){
-            console.log(`c`);
+            // console.log(`c`);
             createFigureTemple(temple);
         }
         if (currentPage == "small" && area < 10000){
-            console.log(`d`);
+            // console.log(`d`);
             createFigureTemple(temple);
         }
     })
