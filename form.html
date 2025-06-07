@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <meta name="author" content="Eric Garcia">
+    <meta name="description" content="Form activity">
+    <meta name="theme-color" content="#14213D">
+    <link rel="stylesheet" href="styles/form.css">
+    <script src="scripts/form.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+   </head>
+<body>
+    <header>
+        <h1>Sales House</h1>
+    </header>
+    <main>
+        <form method="get" action="review.html" class="form1">
+            <fieldset>
+                <legend>Product Review</legend>
+                <label >Product Name*<select name="product_name" id="product_name" required>
+                    <option value="" selected disabled>Select a Product...</option>                    
+                </select></label>
+
+                <div>Overall Rating*</div>
+                <label><input type="radio" name="overallRating" id="1star" required>&star;</label>
+                <label><input type="radio" name="overallRating" id="2star" required>&star;&star;</label>
+                <label><input type="radio" name="overallRating" id="3star" required>&star;&star;&star;</label>
+                <label><input type="radio" name="overallRating" id="4star" required>&star;&star;&star;&star;</label>
+                <label><input type="radio" name="overallRating" id="5star" required>&star;&star;&star;&star;&star;</label>
+
+                <label>Date of Installation*<input type="date" name="installationDate" id="installationDate" required></label>
+
+                <div>Useful Features</div>
+                <label><input type="checkbox" id="Bluetooth" name="Bluetooth" value="Bluetooth">Bluetooth Connectivity</label>
+                <label><input type="checkbox" id="Camera" name="Camera" value="Camera">Rearview Camera</label>
+                <label><input type="checkbox" id="Seats" name="Seats" value="Seats">Heated Seats</label>
+                <label><input type="checkbox" id="Control" name="Control" value="Control">Cruise Control</label>
+                
+                <label>Written Review</label>
+                <textarea name="writtenReview" id="writtenReview"></textarea>
+
+                <label>User Name<input type="text" name="userName"></label>
+            </fieldset>
+            <input id="submit" type="submit" value="Finish My Review">
+        </form> 
+    </main>
+    <footer>
+        <p> © <span >  </span> - Eric Garcia - Brazil, RS </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+</html>
