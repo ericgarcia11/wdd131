@@ -14,6 +14,7 @@ let profileCards = document.getElementById(`profileCards`);
 const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
 let createNewUser = params.get('createNewUser');
+document.getElementsByTagName('main')[0].style.height = '80vh';
 
 let profileData = getProfileData() || [];
 
@@ -24,6 +25,7 @@ if (profileData.length>0 && !createNewUser){
 }
 
 function displayProfiles(){
+    document.getElementsByTagName('main')[0].style.height = '';
     document.getElementsByTagName('main')[0].style.display = 'flex';
     document.getElementsByTagName('main')[0].style.justifyContent = 'center';
     let profileCardIndex = 0;
