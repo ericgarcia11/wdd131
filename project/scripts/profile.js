@@ -81,10 +81,10 @@ function displayProfiles(){
 }
 
 function getProfileData(){
-    return sortedProfiles = [...JSON.parse(localStorage.getItem(`profileData`))].sort((a, b) => {
+    let profileData = JSON.parse(localStorage.getItem(`profileData`));
+    return sortedProfiles = [...profileData].sort((a, b) => {
         return (b.selected === true) - (a.selected === true);
     });
-
 }
 
 // ================= HANDLE PROFILE DATAS SECTION ================= 
