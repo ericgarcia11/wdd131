@@ -12,7 +12,7 @@ const headerTitle = document.querySelector('h1');
 const hamburgerButton = document.getElementById('hamburgerButton');
 const themeImg = document.getElementById('theme');
 
-let theme = getTheme() || `light`
+let theme = getTheme() || `light`;
 
 if (theme === 'dark'){
     document.documentElement.classList.add('dark');

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Music</title>
+    <meta name="author" content="Eric Garcia">
+    <meta name="description" content="Form activity">
+    <meta name="theme-color" content="#14213D">
+    <link rel="stylesheet" href="styles/profile.css">
+    <script src="scripts/profile.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+   </head>
+<body>
+    <header>
+        <h1>Learn Music</h1>
+        <button id="hamburgerButton">&#9776;</button> 
+        <nav id="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="ai.html">AI</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main_profile">
+        <!-- form section when does not have any profile created -->
+        <form method="get" action="review.html" id="form1">
+            <fieldset>
+                <legend>Study Plan Data</legend>
+                <label>User Name*<input type="text" name="userName" required></label>
+                <label>Level*<select name="level" id="level" required>
+                    <option value="" selected disabled>Select a Level...</option>  
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>                  
+                </select></label>
+
+                <label>Date to Achieve the Goal*<input type="date" name="goalDate" id="goalDate" required></label>
+
+                <label>Your Goal*</label>
+                <textarea name="goal" id="goal" placeholder="I want to sing X song / I want to play X song on guitar..."></textarea>
+            </fieldset>
+            <input id="getStudyPlan" type="submit" value="Get My Study Plan">
+        </form> 
+
+        <!-- profile section, when there is at least one profile already created -->
+        <section id="profileCards">
+        </section>
+
+        <img id="theme" alt="toggle_theme">
+    </main>
+    <footer>
+        <p> © <span >  </span> - Eric Garcia - Brazil, RS </p>
+        <p id="lastModified"></p>
+    </footer>
+</body>
+</html>

@@ -4,6 +4,8 @@
     --color-two: white;
     --color-three: #f0d7ff;
     --color-five: #ffc300;
+    --card-select: #cea727;
+    --card-not-select: #c48be4;
     --body-text-color: #3C096C;
 }
 
@@ -12,6 +14,8 @@ html.dark {
     --color-two: #eed2ff;
     --color-three: #3C096C;
     --color-five: #55a630;
+    --card-select: #356e1a;
+    --card-not-select: #5d377f;
     --body-text-color: #edebf0;
 }
 
@@ -40,6 +44,7 @@ header{
 
 header h1{
     margin-left: 0;
+    cursor: pointer;
 }
 
 header h1 a{
@@ -149,7 +154,7 @@ nav a:hover {
 /* ================================ */
 /* main section */
 main {
-    height: 78vh;
+    /* height: 78vh; */
     /* background-color: var(--color-three); */
     background-image: url('../../images/background_light.png');
     background-size: cover;   
@@ -160,7 +165,7 @@ main {
 }
 
 html.dark main{
-    height: 78vh;
+    /* height: 78vh; */
     /* background-color: var(--color-three); */
     background-image: url('../../images/background_dark.png');
     background-size: cover;   
@@ -170,57 +175,37 @@ html.dark main{
     background-blend-mode: overlay;
 }
 
-#home_content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    margin: 2rem;
-    max-width: 600px;
-    /* background-color: #eed2ff4d;
-    border-radius: 25px; */
-}
-
-#main_home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--body-text-color);
-    font-weight: 300;
-}
-
 #main_profile {
     color: var(--body-text-color);
     font-weight: 300;
     padding: 2rem;
 }
 
-#home_content button{
-    transform: scale(1);
-	transition: transform 1s, background-color 1s, color 1s;
-    color: var(--color-five);
-    background-color: var(--color-one);
-    border-radius: 25px;
-    border: none;
-    font-size: 20px;
-    padding: 1rem;
-    width: 12rem;
-}
-
-#home_content button:hover{
-    color: var(--color-one);
-    background-color: var(--color-five);
-    transform: scale(1.1);
-    transition: 0.5s;
-    border-radius: 25px;
-}
-
-/* #home_content section{
+/* PROFILE CARDS SECTION */
+#profileCards{
     display: flex;
     flex-direction: column;
-    align-items: center;
-} */
+    gap: 2rem;
+    align-items: left;
+    max-width: 500px;
+} 
+#profileSelected{
+    background-color: var(--card-select);
+}
+
+.profileCard {
+    border: 1px solid var(--color-one);
+    padding: 2rem;
+    border-radius: 25px;
+    background-color: var(--card-not-select);
+}
+
+.profileCard button{
+    margin: .5rem;
+    margin-top: 2rem;
+    width: 6rem;
+}
+
 
 /* ======= FORM SECTION ====== */
 /* FORM STYLE SECTION */
