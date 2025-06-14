@@ -80,6 +80,12 @@ function displayProfiles(){
     createNewProfileButton.classList.add('createNewProfileButton');
     createNewProfileButton.textContent = 'Create New Profile';
     profileCards.appendChild(createNewProfileButton);
+    console.log(profileCards.children.length);
+    if (profileCards.children.length < 3){
+        document.getElementsByTagName('main')[0].style.minHeight = '70vh';
+    } else {
+        document.getElementsByTagName('main')[0].style.minHeight = '0';
+    }
 }
 
 function getProfileData(){
