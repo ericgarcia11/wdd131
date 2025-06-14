@@ -14,9 +14,7 @@ let profileCards = document.getElementById(`profileCards`);
 const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
 let createNewUser = params.get('createNewUser');
-document.getElementsByTagName('main')[0].style.height = '70vh';
-document.getElementsByTagName('header')[0].style.height = '15vh';
-document.getElementsByTagName('footer')[0].style.height = '15vh';
+document.getElementsByTagName('main')[0].style.minHeight = '84vh';
 
 let profileData = getProfileData() || [];
 
@@ -28,8 +26,6 @@ if (profileData.length>0 && !createNewUser){
 
 function displayProfiles(){
     document.getElementsByTagName('main')[0].style.height = '';
-    document.getElementsByTagName('header')[0].style.height = '';
-    document.getElementsByTagName('footer')[0].style.height = '';
     document.getElementsByTagName('main')[0].style.display = 'flex';
     document.getElementsByTagName('main')[0].style.justifyContent = 'center';
     let profileCardIndex = 0;
@@ -82,7 +78,7 @@ function displayProfiles(){
     profileCards.appendChild(createNewProfileButton);
     console.log(profileCards.children.length);
     if (profileCards.children.length < 3){
-        document.getElementsByTagName('main')[0].style.minHeight = '70vh';
+        document.getElementsByTagName('main')[0].style.minHeight = '84vh';
     } else {
         document.getElementsByTagName('main')[0].style.minHeight = '0';
     }
@@ -164,9 +160,13 @@ profileCardDeleteButtons.forEach(profileCardDeleteButton => {
     profileCardDeleteButton.addEventListener('click', function() {
         let index = this.getAttribute('data-index');
         if (index !== null) {
-            profileData.splice(index, 1);
-            profileData[0].selected = true;
-            localStorage.setItem('profileData', JSON.stringify(profileData));
+            if (profileData.length > 1){
+                profileData.splice(index, 1);
+                profileData[0].selected = true;
+                localStorage.setItem('profileData', JSON.stringify(profileData));
+            } else {
+                localStorage.removeItem('profileData');
+            }
             window.location.reload();
         }
     });

@@ -149,9 +149,9 @@ nav a:hover {
 /* ================================ */
 /* main section */
 main {
-    height: 78vh;
+    min-height: 84vh;
     /* background-color: var(--color-three); */
-    background-image: url('../../images/background_light.png');
+    background-image: url('../images/background_light.png');
     background-size: cover;   
     background-position: center;
     background-repeat: no-repeat;
@@ -160,9 +160,9 @@ main {
 }
 
 html.dark main{
-    height: 78vh;
+    min-height: 84vh;
     /* background-color: var(--color-three); */
-    background-image: url('../../images/background_dark.png');
+    background-image: url('../images/background_dark.png');
     background-size: cover;   
     background-position: center;
     background-repeat: no-repeat;
@@ -309,7 +309,7 @@ button:hover,
     max-width: 35px;
     z-index: 999;
     bottom: 2rem;
-    right: 2rem;
+    left: 2rem;
     padding: .6rem;
 }
 
