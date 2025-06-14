@@ -28,6 +28,8 @@ if (profileData.length>0 && !createNewUser){
 
 function displayProfiles(){
     document.getElementsByTagName('main')[0].style.height = '';
+    document.getElementsByTagName('header')[0].style.height = '';
+    document.getElementsByTagName('footer')[0].style.height = '';
     document.getElementsByTagName('main')[0].style.display = 'flex';
     document.getElementsByTagName('main')[0].style.justifyContent = 'center';
     let profileCardIndex = 0;
