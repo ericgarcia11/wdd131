@@ -14,7 +14,9 @@ let profileCards = document.getElementById(`profileCards`);
 const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
 let createNewUser = params.get('createNewUser');
-document.getElementsByTagName('main')[0].style.height = '80vh';
+document.getElementsByTagName('main')[0].style.height = '70vh';
+document.getElementsByTagName('header')[0].style.height = '15vh';
+document.getElementsByTagName('footer')[0].style.height = '15vh';
 
 let profileData = getProfileData() || [];
 
