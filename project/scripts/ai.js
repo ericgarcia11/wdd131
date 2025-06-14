@@ -194,9 +194,10 @@ let theme = getTheme() || `light`;
 if (theme === 'dark'){
     document.documentElement.classList.add('dark');
     themeImg.setAttribute(`src`,`images/light.svg`);
-    send_msg_button
+    sendMsgButton.setAttribute('src','images/dark_send.svg');
 } else {
     themeImg.setAttribute(`src`,`images/dark.svg`);
+    sendMsgButton.setAttribute('src','images/light_send.svg');
 }
 
 function getTheme(){
