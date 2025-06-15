@@ -193,15 +193,15 @@ function genAiMessage(profileSelected, chatSelected){
     });
 }
 
-document.getElementById('userMessageInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault(); 
-        document.getElementById('send_msg_button').click();
-    }
-});
-
 let buttonSendMsg = document.getElementById('send_msg_button');
 if (buttonSendMsg){
+    document.getElementById('userMessageInput').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); 
+            document.getElementById('send_msg_button').click();
+        }
+    });
+
     buttonSendMsg.addEventListener('click', function(){
         let userMessage = document.getElementById('userMessageInput').value;
         if(!userMessage){
