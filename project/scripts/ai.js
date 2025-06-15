@@ -186,10 +186,10 @@ function genAiMessage(profileSelected, chatSelected){
     .catch(error => {
         console.error('Erro na requisição:', error);
         // TESTES APENAS
-        newMessage = {"role":"model", "content":"ia response teste"};
-        chatSelected.messages.push(newMessage);
-        updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
-        displayNewMessage(newMessage); 
+        // newMessage = {"role":"model", "content":"ia response teste"};
+        // chatSelected.messages.push(newMessage);
+        // updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
+        // displayNewMessage(newMessage); 
     });
 }
 
