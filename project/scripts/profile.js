@@ -150,7 +150,7 @@ document.getElementById('form1').addEventListener('submit', function(event) {
     profileData.push(newProfile);
 
     localStorage.setItem('profileData', JSON.stringify(profileData));
-    window.location.href = 'profile.html';
+    window.location.href = 'ai.html';
 });
 
 const createNewProfileButton = document.querySelector('.createNewProfileButton');

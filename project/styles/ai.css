@@ -213,6 +213,7 @@ html.dark main{
     border-radius: 8px;
     padding: 1rem;
     text-align: left;
+    cursor: pointer;
 }
 
 #chat{
@@ -291,6 +292,22 @@ html.dark main{
     padding: 0;
 }
 
+#chats button{
+    /* display:none; */
+    border: none;
+    transform: scale(1);
+	transition: transform 1s, background-color 1s, color 1s;
+    color: var(--color-two);
+    background-color: var(--color-one);
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 0.8rem;
+    width: 96%;
+    max-width: 300px;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+
 #getStarted button{
     border: none;
     transform: scale(1);
@@ -306,6 +323,7 @@ html.dark main{
     cursor: pointer;
 }
 
+#chats button:hover,
 #getStarted button:hover{
     color: var(--color-one);
     background-color: var(--color-five);

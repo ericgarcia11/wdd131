@@ -52,18 +52,28 @@ function displayChatData(){
     divChatInput.appendChild(textareaMessageInput);
     divChatInput.appendChild(buttonSendMsg);
 
+    // newChat div button
+    let buttonNewChat= document.createElement('button');
+    // divChatsItem.classList.add('chats');
+    buttonNewChat.textContent = `Create New Chat`;
+    buttonNewChat.id = 'buttonNewChat';
+    sectionChats.appendChild(buttonNewChat);
+
     profileSelectedData.chats.forEach(chat => {
         let divChatsItem = document.createElement('div');
         divChatsItem.classList.add('chats');
-        divChatsItem.textContent = `${chat.messages[chat.messages.length-1].content.substring(0, 14)}...`;
+        divChatsItem.textContent = `${chat.messages[chat.messages.length-1].content.substring(0, 22)}...`;
+        divChatsItem.setAttribute('data-index', chatIndex);
         sectionChats.appendChild(divChatsItem);
+        chatIndex += 1;
     })
     
-    let chat = profileSelectedData.chats.forEach(chat => {
-        if (chat.selected){
-            return chat;
-        }
-    }) || profileSelectedData.chats[profileSelectedData.chats.length -1];
+    let chat = getSelectedChat(profileSelectedData);
+    // let chat = profileSelectedData.chats.forEach(chat => {
+    //     if (chat.selected){
+    //         return chat;
+    //     }
+    // }) || profileSelectedData.chats[profileSelectedData.chats.length -1];
     
     chat.messages.forEach(message => {
         if (message.role == 'user'){
@@ -83,7 +93,6 @@ function displayChatData(){
     sectionChat.appendChild(divChatInput);
     divAiContainer.appendChild(sectionChats);
     divAiContainer.appendChild(sectionChat);
-    chatIndex += 1;
 
     let theme = getTheme() || `light`;
     if (theme === 'dark'){
@@ -102,6 +111,7 @@ function displayChatData(){
             genAiMessage(profileSelected, chatSelected);
         }
     }
+    scrollDown();
 }
 
 function getChatsData(){
@@ -145,7 +155,7 @@ function updateChat(profileId, chatId, messages){
         }
     })
     localStorage.setItem(`profileData`, JSON.stringify(profileData));
-    console.log(profileData);
+    // console.log(profileData);
 }
 
 function getSelectedProfile(){
@@ -161,39 +171,82 @@ function getSelectedChat(profileSelected){
     return chatSelected;
 }
 
+function scrollDown(){
+    let chatMessages = document.getElementById('chatMessages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
 function genAiMessage(profileSelected, chatSelected){
-    fetch('https://ai.sobressai.com.br/assistant/run', {
-    // fetch('http://localhost:8000/assistant/run', {
+    // fetch('https://ai.sobressai.com.br/assistant/run', {
+    let divChatMessages = document.getElementById('chatMessages');
+    let divMessage = document.createElement('div');
+    divMessage.classList.add('aiMessage');
+    divMessage.textContent = 'Loading...';
+    divChatMessages.appendChild(divMessage);
+    scrollDown();
+
+    fetch('http://localhost:8000/assistant/run', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'class_project'
         },
         body: JSON.stringify({
-            user_id: profileSelected.profileName,
+            user_id: profileSelected.id,
             codsite: chatSelected.id,
             messages: chatSelected.messages
         })
     })
     .then(response => response.json())  
     .then(data => {
-        console.log(data.response);
+        // console.log(data.response);
         newMessage = {"role":"model", "content":data.response};
         chatSelected.messages.push(newMessage);
         updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
+        divChatMessages.removeChild(divChatMessages.lastChild);
         displayNewMessage(newMessage); 
+        scrollDown();
     })
     .catch(error => {
         console.error('Erro na requisição:', error);
-        // TESTES APENAS
-        // newMessage = {"role":"model", "content":"ia response teste"};
-        // chatSelected.messages.push(newMessage);
-        // updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
-        // displayNewMessage(newMessage); 
     });
 }
 
+function createNewChat(profile){
+    let nextChatId = 1;
+ 
+    if (profile.chats) {
+        profile.chats.forEach(chat => {
+            if (chat.id >= nextChatId) nextChatId = chat.id + 1;
+        });
+    }
+
+    let newChat = {
+        id: nextChatId,
+        selected: true,
+        messages: [
+            {
+                role: "system",
+                content: "You are a Music Teacher, from 'learn music' website. Your role is to create musical study plans based on the user needs."
+            }
+        ]
+    } 
+    
+    let profileData = JSON.parse(localStorage.getItem(`profileData`));
+    profileData.forEach(profileFor =>{
+        if(profileFor.id === profile.id){
+            profileFor.chats.forEach(chat =>{
+                chat.selected = false;
+            })
+            profileFor.chats.push(newChat);
+        }
+    })
+    localStorage.setItem(`profileData`, JSON.stringify(profileData));
+    console.log(profileData);
+}
+
 let buttonSendMsg = document.getElementById('send_msg_button');
+console.log(buttonSendMsg);
 if (buttonSendMsg){
     document.getElementById('userMessageInput').addEventListener('keydown', function(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -206,10 +259,16 @@ if (buttonSendMsg){
         let userMessage = document.getElementById('userMessageInput').value;
         if(!userMessage){
             return null;
+        }
+        let divChatMessages = document.getElementById('chatMessages'); 
+        if (divChatMessages.lastChild){
+            if (divChatMessages.lastChild.textContent === `Loading...`){
+                return null
+            } 
         } else {
             let profileSelected = getSelectedProfile();
             if (!profileSelected){
-                console.log("Error to get the selected profile.")
+                // console.log("Error to get the selected profile.")
                 return null;
             }
             let textArea = document.getElementById('userMessageInput');
@@ -218,10 +277,51 @@ if (buttonSendMsg){
             chatSelected.messages.push(newMessage);
             updateChat(profileSelected.id, chatSelected.id, chatSelected.messages)
             displayNewMessage(newMessage);
+            scrollDown();
             textArea.value = '';
             genAiMessage(profileSelected, chatSelected);
         }
     })
+}
+
+let newChatButton = document.getElementById('buttonNewChat');
+if (buttonNewChat){
+    buttonNewChat.addEventListener('click', function(){
+        let profile = getSelectedProfile();
+        if(!profile){
+            return null;
+        } else {
+            createNewChat(profile);
+            window.location.reload();
+        }
+    })
+
+    let divChatsItems = document.querySelectorAll('.chats');
+    divChatsItems.forEach(divChatsItem => {
+        divChatsItem.addEventListener('click', function() {
+            let index = this.getAttribute('data-index');
+            if (index !== null) {
+                // definir este chat 'this' como o selected
+                let profileData = JSON.parse(localStorage.getItem(`profileData`));
+                let profileSelected = getSelectedProfile();
+                profileData.forEach(profile =>{
+                    if(profile.id === profileSelected.id){
+                        let chatSelectedByUser = profile.chats[index];
+                        profile.chats.forEach(chat =>{
+                                chat.selected = false;
+                        })
+                        profile.chats.forEach(chat =>{
+                            if(chat.id === chatSelectedByUser.id){
+                                chat.selected = true;
+                            }
+                        })
+                    }
+                })
+                localStorage.setItem(`profileData`, JSON.stringify(profileData));
+                window.location.reload();
+            }
+        });
+    });
 }
 
 // ==========================================================
