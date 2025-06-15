@@ -9,184 +9,228 @@ const navigation = document.querySelector("#navigation");
 const hamburgerButton = document.getElementById('hamburgerButton');
 const headerTitle = document.querySelector('h1');
 const themeImg = document.getElementById('theme');
-const sendMsgButton = document.getElementById('send_msg_button');
+let sendMsgButton = document.getElementById('send_msg_button');
+const sadFaceImg = document.getElementById('sadFaceImg');
 const profileForm = document.getElementById('form1');
 let profileCards = document.getElementById(`profileCards`);
 const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
+const sectionGetStarted = document.getElementById('getStarted');
 let createNewUser = params.get('createNewUser');
-document.getElementsByTagName('main')[0].style.height = '70vh';
+// document.getElementsByTagName('main')[0].style.height = '70vh';
 
-// let profileData = getProfileData() || [];
+let profileSelectedData = getChatsData() || null;
 
 // ================= DISPLAY SECTION ================= 
-// if (profileData.length>0 && !createNewUser){
-//     profileForm.style.display = "none";
-//     displayProfiles();
-// }
+if(profileSelectedData){
+    sectionGetStarted.style.display = "none";
+    displayChatData();
+}
 
-// function displayProfiles(){
-//     document.getElementsByTagName('main')[0].style.height = '';
-//     document.getElementsByTagName('main')[0].style.display = 'flex';
-//     document.getElementsByTagName('main')[0].style.justifyContent = 'center';
-//     let profileCardIndex = 0;
-//     profileData.forEach(profile => {
-//         let profileCard = document.createElement('section');
-//         profileCard.classList.add('profileCard');
+function displayChatData(){ 
+    let chatIndex = 0;  
+    let divAiContainer = document.createElement('div');
+    divAiContainer.id = 'aiContainer';
+    let sectionChats = document.createElement('section');
+    sectionChats.id = 'chats';
+    let sectionChat = document.createElement('section');
+    sectionChat.id = 'chat';
+    let divChatMessages = document.createElement('div');
+    divChatMessages.id = 'chatMessages';
+    let divChatInput = document.createElement('div');
+    divChatInput.id = 'chatInput';
+    let textareaMessageInput = document.createElement('textarea');
+    textareaMessageInput.id = 'userMessageInput';
+    textareaMessageInput.required = true;
+    textareaMessageInput.setAttribute('placeholder','what is a harmonic field?');
+    let buttonSendMsg = document.createElement('button');
+    buttonSendMsg.type = 'submit';
+    let imgSendMsg = document.createElement('img');
+    imgSendMsg.id = 'send_msg_button';
+    imgSendMsg.alt = 'send msg button';
+    buttonSendMsg.appendChild(imgSendMsg);
+    divChatInput.appendChild(textareaMessageInput);
+    divChatInput.appendChild(buttonSendMsg);
 
-//         if (profile.selected){
-//             profileCard.id = 'profileSelected';
-//         }
-
-//         let profileCardName = document.createElement('legend');
-//         profileCardName.style.fontWeight = 'bold';
-//         profileCardName.textContent = profile.profileName;
-
-//         let profileCardLevel = document.createElement('legend');
-//         profileCardLevel.textContent = `Level: ${profile.level}`;
-
-//         let profileCardGoalDate = document.createElement('legend');
-//         profileCardGoalDate.textContent = `Goal Date: ${profile.goalDate}`;
-
-//         let profileCardGoal = document.createElement('legend');
-//         profileCardGoal.textContent = `Goal: "${profile.goal}"`;
-
-//         let profileCardSelectButton = document.createElement('button');
-//         profileCardSelectButton.classList.add('profileCardSelectButton');
-//         profileCardSelectButton.textContent = 'Select';
-//         profileCardSelectButton.setAttribute('data-index', profileCardIndex);
-
-//         let profileCardDeleteButton = document.createElement('button');
-//         profileCardDeleteButton.classList.add('profileCardDeleteButton');
-//         profileCardDeleteButton.textContent = 'Delete';
-//         profileCardDeleteButton.setAttribute('data-index', profileCardIndex);
-        
-//         profileCard.appendChild(profileCardName);
-//         profileCard.appendChild(profileCardLevel);
-//         profileCard.appendChild(profileCardGoalDate);
-//         profileCard.appendChild(profileCardGoal);
-//         profileCard.appendChild(profileCardDeleteButton);
-//         if (!profile.selected){
-//             profileCard.appendChild(profileCardSelectButton);
-//         }
-
-//         profileCards.appendChild(profileCard);
-//         profileCardIndex += 1;
-//     })
-//     let createNewProfileButton = document.createElement('button');
-//     createNewProfileButton.classList.add('createNewProfileButton');
-//     createNewProfileButton.textContent = 'Create New Profile';
-//     profileCards.appendChild(createNewProfileButton);
-//     console.log(profileCards.children.length);
-//     if (profileCards.children.length < 3){
-//         document.getElementsByTagName('main')[0].style.minHeight = '70vh';
-//     } else {
-//         document.getElementsByTagName('main')[0].style.minHeight = '0';
-//     }
-// }
-
-// function getProfileData(){
-//     let profileData = JSON.parse(localStorage.getItem(`profileData`));
-//     if (profileData){
-//         return sortedProfiles = [...profileData].sort((a, b) => {
-//             return (b.selected === true) - (a.selected === true);
-//         });
-//     } else{
-//         return [];
-//     }
-// }
-
-// // ================= HANDLE PROFILE DATAS SECTION ================= 
-// document.getElementById('form1').addEventListener('submit', function(event) {
+    profileSelectedData.chats.forEach(chat => {
+        let divChatsItem = document.createElement('div');
+        divChatsItem.classList.add('chats');
+        divChatsItem.textContent = `${chat.messages[chat.messages.length-1].content.substring(0, 14)}...`;
+        sectionChats.appendChild(divChatsItem);
+    })
     
-//     event.preventDefault(); 
+    let chat = profileSelectedData.chats.forEach(chat => {
+        if (chat.selected){
+            return chat;
+        }
+    }) || profileSelectedData.chats[profileSelectedData.chats.length -1];
+    
+    chat.messages.forEach(message => {
+        if (message.role == 'user'){
+            let divMessage = document.createElement('div');
+            divMessage.classList.add('userMessage');
+            divMessage.textContent = message.content;
+            divChatMessages.appendChild(divMessage);
+        } if(message.role == 'model'){
+            let divMessage = document.createElement('div');
+            divMessage.classList.add('aiMessage');
+            divMessage.textContent = message.content;
+            divChatMessages.appendChild(divMessage);
+        } 
+    })
 
-//     let profileName = document.querySelector('input[name="userName"]').value;
-//     let level = document.querySelector('select[name="level"]').value;
-//     let goalDate = document.querySelector('input[name="goalDate"]').value;
-//     let goal = document.querySelector('textarea[name="goal"]').value;
+    sectionChat.appendChild(divChatMessages);
+    sectionChat.appendChild(divChatInput);
+    divAiContainer.appendChild(sectionChats);
+    divAiContainer.appendChild(sectionChat);
+    chatIndex += 1;
 
-//     // set all profiles as not selected
-//     profileData = profileData.map(profile => ({ ...profile, selected: false }));
+    let theme = getTheme() || `light`;
+    if (theme === 'dark'){
+        imgSendMsg.setAttribute('src','images/dark_send.svg');
+    } else {
+        imgSendMsg.setAttribute('src','images/light_send.svg'); 
+    }
 
-//     // get the next chat id
-//     let nextChatId = 1;
-//     profileData.forEach(profile => {
-//         if (profile.chats) {
-//             profile.chats.forEach(chat => {
-//                 if (chat.id >= nextChatId) nextChatId = chat.id + 1;
-//             });
-//         }
-//     });
+    document.querySelector('main').appendChild(divAiContainer);
 
-//     let newProfile = { 
-//         profileName: profileName,
-//         level: level,
-//         goalDate: goalDate,
-//         goal: goal,
-//         selected: true,
-//         chats: [
-//             {
-//                 id: nextChatId,
-//                 messages: [
-//                     {
-//                         role: "system",
-//                         content: "You are a Music Teacher, from 'learn music' website. Your role is to create musical study plans based on the user needs."
-//                     },
-//                     {
-//                         role: "user",
-//                         content: `Hi, my name is ${profileName}, my level is ${level}, my date to achieve my goal is ${goalDate} and my goal is ${goal}. Please, create a study plan for me.`
-//                     }
-//                 ]
-//             }
-//         ]
-//     };
-//     profileData.push(newProfile);
+    // checking if is the first time opening this chat, to generate the first message.
+    let profileSelected = getSelectedProfile();
+    if (profileSelected){
+        let chatSelected = getSelectedChat(profileSelected);
+        if (chatSelected.messages.length == 2){
+            genAiMessage(profileSelected, chatSelected);
+        }
+    }
+}
 
-//     localStorage.setItem('profileData', JSON.stringify(profileData));
-//     window.location.href = 'profile.html';
-// });
+function getChatsData(){
+    let profileData = JSON.parse(localStorage.getItem(`profileData`));
+    if (profileData && profileData.length > 0){
+        let sortedProfiles = [...profileData].sort((a, b) => {
+            return (b.selected === true) - (a.selected === true);
+        });
+        return sortedProfiles[0];
+    } else{
+        return null;
+    }
+}
 
-// const createNewProfileButton = document.querySelector('.createNewProfileButton');
+// // ================= HANDLE CHAT SECTION ================= 
 
-// if (createNewProfileButton){
-//     createNewProfileButton.addEventListener('click', function(){
-//         createNewUser = true;
-//         window.location.href = `profile.html?createNewUser=${encodeURIComponent(createNewUser)}`;
-//     })
-// }
+function displayNewMessage(newMessage){
+    let divChatMessages = document.getElementById('chatMessages');
+    if (newMessage.role == 'user'){
+        let divMessage = document.createElement('div');
+        divMessage.classList.add('userMessage');
+        divMessage.textContent = newMessage.content;
+        divChatMessages.appendChild(divMessage);
+    } if(newMessage.role == 'model'){
+        let divMessage = document.createElement('div');
+        divMessage.classList.add('aiMessage');
+        divMessage.textContent = newMessage.content;
+        divChatMessages.appendChild(divMessage);
+    } 
+}
 
-// let profileCardDeleteButtons = document.querySelectorAll('.profileCardDeleteButton');
-// profileCardDeleteButtons.forEach(profileCardDeleteButton => {
-//     profileCardDeleteButton.addEventListener('click', function() {
-//         let index = this.getAttribute('data-index');
-//         if (index !== null) {
-//             if (profileData.length > 1){
-//                 profileData.splice(index, 1);
-//                 profileData[0].selected = true;
-//                 localStorage.setItem('profileData', JSON.stringify(profileData));
-//             } else {
-//                 localStorage.removeItem('profileData');
-//             }
-//             window.location.reload();
-//         }
-//     });
-// });
+function updateChat(profileId, chatId, messages){
+    let profileData = JSON.parse(localStorage.getItem(`profileData`));
+    profileData.forEach(profile =>{
+        if(profile.id === profileId){
+            profile.chats.forEach(chat => {
+                if(chat.id === chatId){
+                    chat.messages = messages;
+                }
+            });
+        }
+    })
+    localStorage.setItem(`profileData`, JSON.stringify(profileData));
+    console.log(profileData);
+}
 
-// let profileCardSelectButtons = document.querySelectorAll('.profileCardSelectButton');
-// profileCardSelectButtons.forEach(profileCardSelectButton => {
-//     profileCardSelectButton.addEventListener('click', function() {
-//         let index = this.getAttribute('data-index');
-//         if (index !== null) {
-//             profileData.forEach(profile => {
-//                 profile.selected = false;
-//             });
-//             profileData[index].selected = true;
-//             localStorage.setItem('profileData', JSON.stringify(profileData));
-//             window.location.reload();
-//         }
-//     });
-// });
+function getSelectedProfile(){
+    let profileData = JSON.parse(localStorage.getItem(`profileData`));
+    return profileData.find(profile => profile.selected);
+}
+
+function getSelectedChat(profileSelected){
+    let chatSelected = profileSelected.chats.find(chat => chat.selected);
+    if (!chatSelected){
+        chatSelected = profileSelected.chats[profileSelected.chats.length -1];
+    }
+    return chatSelected;
+}
+
+function genAiMessage(profileSelected, chatSelected){
+    fetch('https://ai.sobressai.com.br/assistant/run', {
+    // fetch('http://localhost:8000/assistant/run', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'class_project'
+        },
+        body: JSON.stringify({
+            user_id: profileSelected.profileName,
+            codsite: chatSelected.id,
+            messages: chatSelected.messages
+        })
+    })
+    .then(response => response.json())  
+    .then(data => {
+        console.log(data.response);
+        newMessage = {"role":"model", "content":data.response};
+        chatSelected.messages.push(newMessage);
+        updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
+        displayNewMessage(newMessage); 
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+        // TESTES APENAS
+        newMessage = {"role":"model", "content":"ia response teste"};
+        chatSelected.messages.push(newMessage);
+        updateChat(profileSelected.id, chatSelected.id, chatSelected.messages);
+        displayNewMessage(newMessage); 
+    });
+}
+
+document.getElementById('userMessageInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault(); 
+        document.getElementById('send_msg_button').click();
+    }
+});
+
+let buttonSendMsg = document.getElementById('send_msg_button');
+if (buttonSendMsg){
+    buttonSendMsg.addEventListener('click', function(){
+        let userMessage = document.getElementById('userMessageInput').value;
+        if(!userMessage){
+            return null;
+        } else {
+            let profileSelected = getSelectedProfile();
+            if (!profileSelected){
+                console.log("Error to get the selected profile.")
+                return null;
+            }
+            let textArea = document.getElementById('userMessageInput');
+            let chatSelected = getSelectedChat(profileSelected);
+            let newMessage = {"role":"user", "content":userMessage};
+            chatSelected.messages.push(newMessage);
+            updateChat(profileSelected.id, chatSelected.id, chatSelected.messages)
+            displayNewMessage(newMessage);
+            textArea.value = '';
+            genAiMessage(profileSelected, chatSelected);
+        }
+    })
+}
+
+// ==========================================================
+if(!sendMsgButton){
+    const getStartedButton = document.getElementById('getStartedButton');
+    getStartedButton.addEventListener('click', function(){
+        window.location.href = 'profile.html?createNewUser=true';
+    })
+}
 
 // ================= THEME SECTION ================= 
 let theme = getTheme() || `light`;
@@ -194,10 +238,19 @@ let theme = getTheme() || `light`;
 if (theme === 'dark'){
     document.documentElement.classList.add('dark');
     themeImg.setAttribute(`src`,`images/light.svg`);
-    sendMsgButton.setAttribute('src','images/dark_send.svg');
+    let sendMsgButton = document.getElementById('send_msg_button');
+    if(sendMsgButton){
+        sendMsgButton.setAttribute('src','images/dark_send.svg');
+    } else {
+        sadFaceImg.setAttribute('src','images/sad_dark.svg');
+    }
 } else {
     themeImg.setAttribute(`src`,`images/dark.svg`);
-    sendMsgButton.setAttribute('src','images/light_send.svg');
+    if(sendMsgButton){
+        sendMsgButton.setAttribute('src','images/light_send.svg');
+    } else {
+        sadFaceImg.setAttribute('src','images/sad_light.svg');
+    }  
 }
 
 function getTheme(){
@@ -210,14 +263,23 @@ function setTheme(){
 
 themeImg.addEventListener('click', function(){
     document.documentElement.classList.toggle('dark');
+    sendMsgButton = document.getElementById('send_msg_button');
     if (document.documentElement.classList == 'dark'){
         theme = `dark`;
         themeImg.setAttribute(`src`,`images/light.svg`);
-        sendMsgButton.setAttribute('src','images/dark_send.svg');
+        if(sendMsgButton){
+            sendMsgButton.setAttribute('src','images/dark_send.svg');
+        } else {
+            sadFaceImg.setAttribute('src','images/sad_dark.svg');
+        }
     } else {
         theme = `light`;
         themeImg.setAttribute(`src`,`images/dark.svg`);
-        sendMsgButton.setAttribute('src','images/light_send.svg');
+        if(sendMsgButton){
+            sendMsgButton.setAttribute('src','images/light_send.svg');
+        } else {
+            sadFaceImg.setAttribute('src','images/sad_light.svg');
+        }
     }
     setTheme();
 })

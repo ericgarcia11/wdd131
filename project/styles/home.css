@@ -199,7 +199,7 @@ html.dark main{
 #home_content button{
     transform: scale(1);
 	transition: transform 1s, background-color 1s, color 1s;
-    color: var(--color-five);
+    color: var(--color-two);
     background-color: var(--color-one);
     border-radius: 25px;
     border: none;

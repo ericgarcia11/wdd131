@@ -108,6 +108,11 @@ document.getElementById('form1').addEventListener('submit', function(event) {
     // set all profiles as not selected
     profileData = profileData.map(profile => ({ ...profile, selected: false }));
 
+    let nextProfileId = 1;
+    profileData.forEach(profile =>{
+        if (profile.id>= nextProfileId) nextProfileId = profile.id +1;
+    })
+
     // get the next chat id
     let nextChatId = 1;
     profileData.forEach(profile => {
@@ -119,6 +124,7 @@ document.getElementById('form1').addEventListener('submit', function(event) {
     });
 
     let newProfile = { 
+        id: nextProfileId,
         profileName: profileName,
         level: level,
         goalDate: goalDate,
@@ -127,6 +133,7 @@ document.getElementById('form1').addEventListener('submit', function(event) {
         chats: [
             {
                 id: nextChatId,
+                selected: false,
                 messages: [
                     {
                         role: "system",
