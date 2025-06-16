@@ -15,6 +15,8 @@ const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
 let createNewUser = params.get('createNewUser');
 document.getElementsByTagName('main')[0].style.minHeight = '84vh';
+const today = new Date();
+const todayDate = today.toISOString().split('T')[0];
 
 let profileData = getProfileData() || [];
 
@@ -141,7 +143,7 @@ document.getElementById('form1').addEventListener('submit', function(event) {
                     },
                     {
                         role: "user",
-                        content: `Hi, my name is ${profileName}, my level is ${level}, my date to achieve my goal is ${goalDate} and my goal is ${goal}. Please, create a study plan for me.`
+                        content: `Today is ${todayDate} ####Hi, my name is ${profileName}, my level is ${level}, my date to achieve my goal is ${goalDate} and my goal is ${goal}. Please, create a study plan for me.`
                     }
                 ]
             }

@@ -17,6 +17,8 @@ const getStudyPlanButton = document.getElementById('getStudyPlan');
 let params = new URLSearchParams(window.location.search);
 const sectionGetStarted = document.getElementById('getStarted');
 let createNewUser = params.get('createNewUser');
+const today = new Date();
+const todayDate = today.toISOString().split('T')[0];
 // document.getElementsByTagName('main')[0].style.height = '70vh';
 
 let profileSelectedData = getChatsData() || null;
@@ -28,7 +30,7 @@ if(profileSelectedData){
 }
 
 function displayChatData(){ 
-    let chatIndex = 0;  
+    // let chatIndex = 0;  
     let divAiContainer = document.createElement('div');
     divAiContainer.id = 'aiContainer';
     let sectionChats = document.createElement('section');
@@ -59,13 +61,14 @@ function displayChatData(){
     buttonNewChat.id = 'buttonNewChat';
     sectionChats.appendChild(buttonNewChat);
 
-    profileSelectedData.chats.forEach(chat => {
+    profileSelectedData.chats.slice().reverse().forEach((chat,i) => {
+        const chatIndex = profileSelectedData.chats.length - 1 - i;
         let divChatsItem = document.createElement('div');
         divChatsItem.classList.add('chats');
         divChatsItem.textContent = `${chat.messages[chat.messages.length-1].content.substring(0, 22)}...`;
         divChatsItem.setAttribute('data-index', chatIndex);
         sectionChats.appendChild(divChatsItem);
-        chatIndex += 1;
+        // chatIndex += 1;
     })
     
     let chat = getSelectedChat(profileSelectedData);
@@ -79,7 +82,11 @@ function displayChatData(){
         if (message.role == 'user'){
             let divMessage = document.createElement('div');
             divMessage.classList.add('userMessage');
-            divMessage.textContent = message.content;
+            let userMessageContent = message.content;
+            if(message.content.includes('####')){
+                userMessageContent = message.content.split('####')[1];
+            }
+            divMessage.textContent = userMessageContent;
             divChatMessages.appendChild(divMessage);
         } if(message.role == 'model'){
             let divMessage = document.createElement('div');
@@ -133,6 +140,9 @@ function displayNewMessage(newMessage){
     if (newMessage.role == 'user'){
         let divMessage = document.createElement('div');
         divMessage.classList.add('userMessage');
+        if(newMessage.content.includes('####')){
+            newMessage.content = newMessage.content.split('####')[1];
+        }
         divMessage.textContent = newMessage.content;
         divChatMessages.appendChild(divMessage);
     } if(newMessage.role == 'model'){
@@ -267,14 +277,17 @@ if (buttonSendMsg){
         }
         let profileSelected = getSelectedProfile();
         if (!profileSelected){
-            // console.log("Error to get the selected profile.")
             return null;
         }
         let textArea = document.getElementById('userMessageInput');
         let chatSelected = getSelectedChat(profileSelected);
-        let newMessage = {"role":"user", "content":userMessage};
+        let newMessage = {"role":"user", "content": `Today is ${todayDate}####${userMessage}`};
+        // console.log(newMessage);
+        // console.log(chatSelected.messages);
         chatSelected.messages.push(newMessage);
+        // console.log(chatSelected.messages);
         updateChat(profileSelected.id, chatSelected.id, chatSelected.messages)
+        // console.log(profileSelected);
         displayNewMessage(newMessage);
         scrollDown();
         textArea.value = '';
