@@ -244,6 +244,7 @@ html.dark main{
 #form1 textarea,
 #form1 select{
     background-color: var(--color-three);
+    color: var(--body-text-color);
     display: block;
     border: none;
     border-radius: 6px;
