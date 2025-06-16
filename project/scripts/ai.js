@@ -44,7 +44,7 @@ function displayChatData(){
     let textareaMessageInput = document.createElement('textarea');
     textareaMessageInput.id = 'userMessageInput';
     textareaMessageInput.required = true;
-    textareaMessageInput.setAttribute('placeholder','what is a harmonic field?');
+    textareaMessageInput.setAttribute('placeholder','What is a harmonic field?');
     let buttonSendMsg = document.createElement('button');
     buttonSendMsg.type = 'submit';
     let imgSendMsg = document.createElement('img');
