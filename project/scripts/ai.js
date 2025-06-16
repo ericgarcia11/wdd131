@@ -246,7 +246,6 @@ function createNewChat(profile){
 }
 
 let buttonSendMsg = document.getElementById('send_msg_button');
-console.log(buttonSendMsg);
 if (buttonSendMsg){
     document.getElementById('userMessageInput').addEventListener('keydown', function(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -265,22 +264,21 @@ if (buttonSendMsg){
             if (divChatMessages.lastChild.textContent === `Loading...`){
                 return null
             } 
-        } else {
-            let profileSelected = getSelectedProfile();
-            if (!profileSelected){
-                // console.log("Error to get the selected profile.")
-                return null;
-            }
-            let textArea = document.getElementById('userMessageInput');
-            let chatSelected = getSelectedChat(profileSelected);
-            let newMessage = {"role":"user", "content":userMessage};
-            chatSelected.messages.push(newMessage);
-            updateChat(profileSelected.id, chatSelected.id, chatSelected.messages)
-            displayNewMessage(newMessage);
-            scrollDown();
-            textArea.value = '';
-            genAiMessage(profileSelected, chatSelected);
         }
+        let profileSelected = getSelectedProfile();
+        if (!profileSelected){
+            // console.log("Error to get the selected profile.")
+            return null;
+        }
+        let textArea = document.getElementById('userMessageInput');
+        let chatSelected = getSelectedChat(profileSelected);
+        let newMessage = {"role":"user", "content":userMessage};
+        chatSelected.messages.push(newMessage);
+        updateChat(profileSelected.id, chatSelected.id, chatSelected.messages)
+        displayNewMessage(newMessage);
+        scrollDown();
+        textArea.value = '';
+        genAiMessage(profileSelected, chatSelected);
     })
 }
 
