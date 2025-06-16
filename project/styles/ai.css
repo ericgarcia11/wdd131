@@ -218,14 +218,14 @@ html.dark main{
     text-align: left;
     cursor: pointer;
     transform: scale(1);
-	transition: transform 1s, background-color 1s, color 1s;
+	transition: transform .3s, background-color .3s, color .3s;
 }
 
 .chats:hover{
     background-color: var(--body-text-color);
     color: var(--color-three);
     transform: scale(1.05);
-	transition: transform 1s, background-color 1s, color 1s;
+	transition: transform .3s, background-color .3s, color .3s;
 }
 
 #chat{
