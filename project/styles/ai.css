@@ -215,6 +215,15 @@ html.dark main{
     padding: 1rem;
     text-align: left;
     cursor: pointer;
+    transform: scale(1);
+	transition: transform 1s, background-color 1s, color 1s;
+}
+
+.chats:hover{
+    background-color: var(--body-text-color);
+    color: var(--color-three);
+    transform: scale(1.05);
+	transition: transform 1s, background-color 1s, color 1s;
 }
 
 #chat{
