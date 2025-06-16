@@ -185,7 +185,7 @@ function genAiMessage(profileSelected, chatSelected){
     divChatMessages.appendChild(divMessage);
     scrollDown();
 
-    fetch('http://localhost:8000/assistant/run', {
+    fetch('https://ai.sobressai.com.br/assistant/run', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -282,7 +282,7 @@ if (buttonSendMsg){
     })
 }
 
-let newChatButton = document.getElementById('buttonNewChat');
+let buttonNewChat = document.getElementById('buttonNewChat');
 if (buttonNewChat){
     buttonNewChat.addEventListener('click', function(){
         let profile = getSelectedProfile();
