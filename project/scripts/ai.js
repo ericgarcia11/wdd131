@@ -49,6 +49,7 @@ function displayChatData(){
     buttonSendMsg.type = 'submit';
     let imgSendMsg = document.createElement('img');
     imgSendMsg.id = 'send_msg_button';
+    imgSendMsg.loading = 'lazy';
     imgSendMsg.alt = 'send msg button';
     buttonSendMsg.appendChild(imgSendMsg);
     divChatInput.appendChild(textareaMessageInput);
@@ -349,18 +350,24 @@ let theme = getTheme() || `light`;
 if (theme === 'dark'){
     document.documentElement.classList.add('dark');
     themeImg.setAttribute(`src`,`images/light.svg`);
+    themeImg.loading = 'lazy';
     let sendMsgButton = document.getElementById('send_msg_button');
     if(sendMsgButton){
         sendMsgButton.setAttribute('src','images/dark_send.svg');
+        sendMsgButton.loading = 'lazy';
     } else {
         sadFaceImg.setAttribute('src','images/sad_dark.svg');
+        sadFaceImg.loading = 'lazy';
     }
 } else {
     themeImg.setAttribute(`src`,`images/dark.svg`);
+    themeImg.loading = 'lazy';
     if(sendMsgButton){
         sendMsgButton.setAttribute('src','images/light_send.svg');
+        sendMsgButton.loading = 'lazy';
     } else {
         sadFaceImg.setAttribute('src','images/sad_light.svg');
+        sadFaceImg.loading = 'lazy';
     }  
 }
 

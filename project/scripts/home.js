@@ -17,8 +17,10 @@ let theme = getTheme() || `light`;
 if (theme === 'dark'){
     document.documentElement.classList.add('dark');
     themeImg.setAttribute(`src`,`images/light.svg`);
+    themeImg.loading = 'lazy';
 } else {
     themeImg.setAttribute(`src`,`images/dark.svg`);
+    themeImg.loading = 'lazy';
 }
 
 function getTheme(){
@@ -34,9 +36,11 @@ themeImg.addEventListener('click', function(){
     if (document.documentElement.classList == 'dark'){
         theme = `dark`;
         themeImg.setAttribute(`src`,`images/light.svg`);
+        themeImg.loading = 'lazy';
     } else {
         theme = `light`;
         themeImg.setAttribute(`src`,`images/dark.svg`);
+        themeImg.loading = 'lazy';
     }
     setTheme();
 })
