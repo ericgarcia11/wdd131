@@ -241,6 +241,7 @@ html.dark main{
     margin-right: 4rem;
     border-radius: 25px 25px 25px 0;
     background-color: var(--color-three);
+    white-space: pre-wrap;
 }
 
 .userMessage{
