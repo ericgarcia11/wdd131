@@ -65,9 +65,13 @@ function displayChatData(){
     profileSelectedData.chats.slice().reverse().forEach((chat,i) => {
         const chatIndex = profileSelectedData.chats.length - 1 - i;
         let divChatsItem = document.createElement('div');
-        divChatsItem.classList.add('chats');
         divChatsItem.textContent = `${chat.messages[chat.messages.length-1].content.substring(0, 22)}...`;
         divChatsItem.setAttribute('data-index', chatIndex);
+        if (chat.selected){
+            divChatsItem.classList.add('chatSelected');
+        } else {
+            divChatsItem.classList.add('chats');
+        }
         sectionChats.appendChild(divChatsItem);
         // chatIndex += 1;
     })
